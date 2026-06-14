@@ -37,6 +37,7 @@ The same dataset is published openly across several platforms:
 - **OSF:** https://osf.io/dhxp9/
 - **data.world:** https://data.world/peterkolomiets/jobcannon-psychometric-response-dataset
 - **GitHub:** https://github.com/PeterKolomiets/jobcannon-psychometric-dataset
+- **Figshare (DOI):** https://doi.org/10.6084/m9.figshare.32668833
 - **Source page:** https://jobcannon.io/research/distributions
 
 ## What's inside
