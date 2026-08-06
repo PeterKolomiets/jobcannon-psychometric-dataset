@@ -112,9 +112,9 @@ cannot be joined back to a session by its time.
 ```
 
 That handle is Zenodo's **concept** DOI: it always resolves to the newest
-version, so a citation written today keeps working after the next release. The
-DOI pinned to this exact snapshot is `10.5281/zenodo.21822550`; the one pinned
-to v1 is `10.5281/zenodo.20686670`.
+version, so a citation written today keeps working after the next release. If
+you need to pin a snapshot instead, every version carries its own DOI, listed
+on the Zenodo record; the one pinned to v1 is `10.5281/zenodo.20686670`.
 
 Figshare carries its own DataCite DOI, `10.6084/m9.figshare.32668833`, and it
 also resolves to this release. The two remaining DOI handles in the table below —
