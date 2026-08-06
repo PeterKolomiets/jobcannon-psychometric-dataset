@@ -101,23 +101,32 @@ cannot be joined back to a session by its time.
   author = {Kolomiets, Peter},
   year   = {2026},
   version = {2.0},
-  publisher = {Zenodo},
-  doi    = {10.5281/zenodo.20686670},
-  url    = {https://jobcannon.io/research/dataset}
+  publisher = {JobCannon},
+  url    = {https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses}
 }
 ```
 
+No DOI is listed above on purpose. `10.5281/zenodo.20686670` and the other DOI
+handles still resolve to the **v1** snapshot — 8,394 responses, not 44,342 — so
+citing one alongside `version = {2.0}` would name this release and hand the
+reader the previous one. Cite a DOI only for v1; for v2, cite the record above
+until the DOI hosts are re-deposited.
+
 ## Mirrors
 
-| host | handle |
-| --- | --- |
-| Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) |
-| Zenodo | [10.5281/zenodo.20686670](https://doi.org/10.5281/zenodo.20686670) |
-| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) |
-| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) |
-| Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) |
-| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) |
-| GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) |
+| host | handle | serves |
+| --- | --- | --- |
+| Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) | **v2** |
+| Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v2** |
+| GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v2** |
+| Zenodo | [10.5281/zenodo.20686670](https://doi.org/10.5281/zenodo.20686670) | v1 |
+| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v1 |
+| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | v1 |
+| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | v1 |
+
+The four DOI hosts are re-deposited on their own cycle and still hold the v1
+files. The column above is the only reliable way to tell before downloading, so
+it is kept accurate rather than aspirational.
 
 Live aggregate norms, recomputed monthly and larger than this frozen snapshot,
 are published at [jobcannon.io/research/distributions](https://jobcannon.io/research/distributions).
