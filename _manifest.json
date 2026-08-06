@@ -1,0 +1,94 @@
+{
+  "manifest": [
+    {
+      "type": "mbti",
+      "raw": 15464,
+      "kept": 14735,
+      "items": 60,
+      "cols": 70
+    },
+    {
+      "type": "career_match",
+      "raw": 6962,
+      "kept": 6506,
+      "items": 12,
+      "cols": 23
+    },
+    {
+      "type": "riasec",
+      "raw": 5240,
+      "kept": 4947,
+      "items": 60,
+      "cols": 71
+    },
+    {
+      "type": "disc",
+      "raw": 4926,
+      "kept": 4610,
+      "items": 12,
+      "cols": 21
+    },
+    {
+      "type": "enneagram",
+      "raw": 4173,
+      "kept": 3784,
+      "items": 36,
+      "cols": 50
+    },
+    {
+      "type": "big_five",
+      "raw": 3598,
+      "kept": 3377,
+      "items": 50,
+      "cols": 60
+    },
+    {
+      "type": "multiple_intelligences",
+      "raw": 3178,
+      "kept": 2936,
+      "items": 40,
+      "cols": 53
+    },
+    {
+      "type": "eq",
+      "raw": 2583,
+      "kept": 2512,
+      "items": 10,
+      "cols": 19
+    },
+    {
+      "type": "dark_triad",
+      "raw": 985,
+      "kept": 935,
+      "items": 18,
+      "cols": 26
+    }
+  ],
+  "totalKept": 44342,
+  "byLocaleTotal": {
+    "en": 29191,
+    "ja": 2682,
+    "ko": 1382,
+    "ar": 1533,
+    "unknown": 4616,
+    "fr": 608,
+    "ru": 788,
+    "es": 855,
+    "pt": 414,
+    "id": 660,
+    "zh": 192,
+    "he": 286,
+    "ua": 314,
+    "de": 136,
+    "it": 144,
+    "th": 301,
+    "pl": 36,
+    "vi": 45,
+    "tr": 87,
+    "hi": 16,
+    "sv": 32,
+    "nl": 17,
+    "nb": 2,
+    "kk": 5
+  }
+}

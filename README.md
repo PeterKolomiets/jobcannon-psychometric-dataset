@@ -1,101 +1,129 @@
----
-license: cc-by-4.0
-language:
-  - en
-tags:
-  - psychometrics
-  - personality
-  - career
-  - riasec
-  - mbti
-  - big-five
-  - disc
-  - enneagram
-pretty_name: JobCannon Psychometric Response Dataset
-size_categories:
-  - 1K<n<10K
----
-
 # JobCannon Psychometric Response Dataset
+
+**v2 — 44,342 item-level responses across nine instruments and 23 languages.**
 
 Anonymized, item-level responses to nine open-domain psychometric instruments,
 collected from real test-takers on [JobCannon](https://jobcannon.io). Each row is
 one completed assessment: the raw per-item answers, the computed dimensional
 scores, and the dominant result type.
 
-This is a **first-party** dataset — these are our own users' responses, not a
-re-publication of someone else's data. Released for research, education, and
-benchmarking in the spirit of the OpenPsychometrics archive.
+This is a **first-party** dataset — our own users' responses, not a
+re-publication of someone else's data.
 
-## Mirrors & DOI
+## What is new in v2
 
-The same dataset is published openly across several platforms:
+- **5.3× more data.** 8,394 → **44,342** item-level responses.
+- **Multilingual.** **10,535 responses are non-English**, across 22 languages
+  besides English. Open psychometric corpora are almost entirely English; this
+  is the part of the release we think is hardest to find elsewhere.
+- **A by-locale aggregate layer.** Three extra tables give result shares and
+  dimension means per instrument *per language*, so cross-cultural comparisons
+  do not require re-deriving them from the item-level files.
+- **Each instrument is its own config.** In v1 the nine CSVs were served as a
+  single `default` config; because their schemas differ, the dataset viewer
+  could not build and showed zero rows. Fixed here.
 
-- **Hugging Face:** https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses
-- **Zenodo (DOI):** https://doi.org/10.5281/zenodo.20686670
-- **Kaggle:** https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses
-- **OSF:** https://osf.io/dhxp9/
-- **data.world:** https://data.world/peterkolomiets/jobcannon-psychometric-response-dataset
-- **GitHub:** https://github.com/PeterKolomiets/jobcannon-psychometric-dataset
-- **Figshare (DOI):** https://doi.org/10.6084/m9.figshare.32668833
-- **Source page:** https://jobcannon.io/research/distributions
+## Files
 
-## What's inside
+### Item-level — one row per completed assessment
 
-| File | Instrument | N | Items | Score dimensions |
-|---|---|---:|---:|---:|
-| `career_match.csv` | Mini-RIASEC (forced-choice career interest) | 2,005 | 12 | 6 (R I A S E C) |
-| `riasec.csv` | RIASEC / Holland Codes (full) | 1,455 | 60 | 6 + percentile |
-| `mbti.csv` | 16-type indicator (E/I, S/N, T/F, J/P + A/T) | 1,762 | 60 | 7 |
-| `big_five.csv` | Big Five / OCEAN | 880 | 50 | 5 |
-| `disc.csv` | DISC behavioral style | 888 | 12 | 4 (D I S C) |
-| `enneagram.csv` | Enneagram (9 types) | 487 | 36 | 9 |
-| `multiple_intelligences.csv` | Gardner's Multiple Intelligences | 498 | 40 | 8 |
-| `eq.csv` | Emotional intelligence (short) | 264 | 10 | 4 |
-| `dark_triad.csv` | Dark Triad (SD3-style) | 155 | 18 | 3 |
+| config | instrument | items | responses |
+| --- | --- | --- | --- |
+| `mbti` | 16-type indicator | 60 | 14,735 |
+| `career_match` | Mini-RIASEC forced choice | 12 | 6,506 |
+| `riasec` | Holland Codes | 60 | 4,947 |
+| `disc` | DISC | 12 | 4,610 |
+| `enneagram` | Enneagram | 36 | 3,784 |
+| `big_five` | Five-Factor | 50 | 3,377 |
+| `multiple_intelligences` | Gardner MI | 40 | 2,936 |
+| `eq` | Emotional intelligence | 10 | 2,512 |
+| `dark_triad` | Dark Triad | 18 | 935 |
+| | | | **44,342** |
 
-`_NORMS.md` contains the per-test result distributions and dimensional means.
+Columns: `response_id`, `locale`, `year_month`, `duration_seconds`,
+`top_result`, `score_<dimension>` …, `q1` … `qN`.
 
-## Column schema
+### Aggregates — by instrument × language
 
-Every CSV shares the same leading columns, then per-instrument score and item columns:
+| config | rows | what it holds |
+| --- | --- | --- |
+| `coverage` | 198 | n, item count, distinct results and median duration for every instrument × locale cell, with a `publishable` flag (n ≥ 100) |
+| `result_distribution_by_locale` | 330 | share of each result type, per instrument per locale |
+| `dimension_means_by_locale` | 294 | mean of each score dimension, per instrument per locale |
 
-| Column | Meaning |
-|---|---|
-| `id` | Anonymous sequential index within the file. **Not** a database identifier. |
-| `created_at` | UTC timestamp of completion |
-| `locale` | UI language at time of taking (may be blank) |
-| `duration_seconds` | Time to complete (may be blank) |
-| `top_result` | Dominant result type for this instrument |
-| `score_<dim>` | Computed score per dimension |
-| `q1 … qN` | Raw per-item answer values (instrument-specific scale) |
+Aggregates suppress small cells: a locale cell needs **n ≥ 100** to appear, and
+a result category with **n < 30** is folded into `other_below_30`.
 
-Only canonical-length submissions are included: each instrument was filtered to
-its current item count, dropping incomplete and legacy-version rows so every
-`q1…qN` block is consistent within a file.
+## Language coverage
+
+Item-level responses per language, all instruments combined:
+
+| | | | | | |
+| --- | --- | --- | --- | --- | --- |
+| en 29,191 | ja 2,682 | ar 1,533 | ko 1,382 | es 855 | ru 788 |
+| id 660 | fr 608 | pt 414 | uk 314 | th 301 | he 286 |
+| zh 192 | it 144 | de 136 | tr 87 | vi 45 | pl 36 |
+| sv 32 | nl 17 | hi 16 | kk 5 | nb 2 | |
+
+A further 4,616 responses carry no locale and are labelled `unknown`. Eleven
+locale labels — `ar en es fr id ja ko pt ru th` and `unknown` — reach n ≥ 100
+in at least one instrument and therefore appear in the aggregate tables, in 42
+instrument × locale cells.
 
 ## Privacy
 
-No personal data is present. The build pipeline **never selects** user id,
-anonymous id, name, email, IP/host, referrer, or UTM parameters. The only
-identifier is an anonymous sequential `id` generated at export time; the
-underlying database row identifiers are not emitted.
+No personal data is in these files, and none is read in the first place. The
+build selects exactly six columns — `locale`, `answers`, `scores`,
+`top_result`, `duration_seconds`, `created_at` — so the identifying columns
+that exist on the source table (user id, anonymous id, participant name and
+email, referrer, entry host and path, UTM parameters, cohort and organization
+ids) cannot reach the output even through a later change to the writer.
 
-## Instruments & licensing
+Two further reductions: `response_id` is a per-file sequential integer rather
+than the database id, and the timestamp is truncated to `year_month`, so a row
+cannot be joined back to a session by its time.
 
-All instruments are open-domain or public-domain measures (RIASEC/Holland, IPIP
-Big Five, DISC, Enneagram, MMI, Dark Triad SD3 family). They are screening and
-self-discovery tools, not clinical diagnostics.
+## Method
+
+- Rows are filtered to each instrument's **current item count**. A response
+  whose answer array is any other length is a legacy test version or an
+  incomplete and is dropped — 2,767 of 47,109 raw rows (5.9%).
+- `score_*` columns hold the numeric dimensions exactly as scored by the live
+  site. Categorical outputs (MBTI's full type with the identity suffix, for
+  instance) travel in `top_result`.
+- `duration_seconds` is blank where the recorded value was ≤ 0 or ≥ 7,200 s.
 
 ## Citation
 
-```
+```bibtex
 @dataset{jobcannon_psychometric_2026,
   title  = {JobCannon Psychometric Response Dataset},
-  author = {JobCannon},
+  author = {Kolomiets, Peter},
   year   = {2026},
-  url    = {https://jobcannon.io}
+  version = {2.0},
+  publisher = {Zenodo},
+  doi    = {10.5281/zenodo.20686670},
+  url    = {https://jobcannon.io/research/dataset}
 }
 ```
 
-License: **CC-BY-4.0** — free to use with attribution.
+## Mirrors
+
+| host | handle |
+| --- | --- |
+| Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) |
+| Zenodo | [10.5281/zenodo.20686670](https://doi.org/10.5281/zenodo.20686670) |
+| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) |
+| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) |
+| Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) |
+| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) |
+| GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) |
+
+Live aggregate norms, recomputed monthly and larger than this frozen snapshot,
+are published at [jobcannon.io/research/distributions](https://jobcannon.io/research/distributions).
+Reliability coefficients for the same instruments are at
+[jobcannon.io/research/reliability](https://jobcannon.io/research/reliability).
+
+## License
+
+CC-BY-4.0. Use it, build on it, cite it.
