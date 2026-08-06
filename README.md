@@ -54,6 +54,10 @@ Columns: `response_id`, `locale`, `year_month`, `duration_seconds`,
 Aggregates suppress small cells: a locale cell needs **n ≥ 100** to appear, and
 a result category with **n < 30** is folded into `other_below_30`.
 
+`_manifest.json` is not a config — it records, per instrument, the raw row
+count pulled, the count kept after item-count filtering, and the resulting
+column count, so the numbers quoted here can be checked against the build.
+
 ## Language coverage
 
 Item-level responses per language, all instruments combined:
@@ -102,31 +106,38 @@ cannot be joined back to a session by its time.
   year   = {2026},
   version = {2.0},
   publisher = {JobCannon},
-  url    = {https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses}
+  doi    = {10.5281/zenodo.20686669},
+  url    = {https://doi.org/10.5281/zenodo.20686669}
 }
 ```
 
-No DOI is listed above on purpose. `10.5281/zenodo.20686670` and the other DOI
-handles still resolve to the **v1** snapshot — 8,394 responses, not 44,342 — so
-citing one alongside `version = {2.0}` would name this release and hand the
-reader the previous one. Cite a DOI only for v1; for v2, cite the record above
-until the DOI hosts are re-deposited.
+That handle is Zenodo's **concept** DOI: it always resolves to the newest
+version, so a citation written today keeps working after the next release. The
+DOI pinned to this exact snapshot is `10.5281/zenodo.21822550`; the one pinned
+to v1 is `10.5281/zenodo.20686670`.
+
+The remaining DOI handles in the table below — Figshare, OSF, Harvard Dataverse
+— still resolve to the **v1** snapshot, 8,394 responses rather than 44,342.
+Citing one of those alongside `version = {2.0}` would name this release and hand
+the reader the previous one, so cite them only for v1.
 
 ## Mirrors
 
 | host | handle | serves |
 | --- | --- | --- |
+| Zenodo | [10.5281/zenodo.20686669](https://doi.org/10.5281/zenodo.20686669) | **v2** |
 | Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) | **v2** |
 | Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v2** |
 | GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v2** |
-| Zenodo | [10.5281/zenodo.20686670](https://doi.org/10.5281/zenodo.20686670) | v1 |
 | Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v1 |
 | Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | v1 |
 | OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | v1 |
+| data.world | [peterkolomiets/jobcannon-psychometric-response-dataset](https://data.world/peterkolomiets/jobcannon-psychometric-response-dataset) | v1 |
 
-The four DOI hosts are re-deposited on their own cycle and still hold the v1
-files. The column above is the only reliable way to tell before downloading, so
-it is kept accurate rather than aspirational.
+Each mirror is re-deposited on its own cycle, so at any moment some of them lag.
+The column above is the only reliable way to tell which snapshot a host is
+serving before downloading from it, and it is kept accurate rather than
+aspirational.
 
 Live aggregate norms, recomputed monthly and larger than this frozen snapshot,
 are published at [jobcannon.io/research/distributions](https://jobcannon.io/research/distributions).
