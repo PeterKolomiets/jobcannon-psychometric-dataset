@@ -116,10 +116,11 @@ version, so a citation written today keeps working after the next release. The
 DOI pinned to this exact snapshot is `10.5281/zenodo.21822550`; the one pinned
 to v1 is `10.5281/zenodo.20686670`.
 
-The remaining DOI handles in the table below — Figshare, OSF, Harvard Dataverse
-— still resolve to the **v1** snapshot, 8,394 responses rather than 44,342.
-Citing one of those alongside `version = {2.0}` would name this release and hand
-the reader the previous one, so cite them only for v1.
+Figshare carries its own DataCite DOI, `10.6084/m9.figshare.32668833`, and it
+also resolves to this release. The two remaining DOI handles in the table below —
+OSF and Harvard Dataverse — still point at the **v1** snapshot, 8,394 responses
+rather than 44,342. Citing one of those alongside `version = {2.0}` would name
+this release and hand the reader the previous one, so cite them only for v1.
 
 ## Mirrors
 
@@ -129,8 +130,8 @@ the reader the previous one, so cite them only for v1.
 | Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) | **v2** |
 | Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v2** |
 | GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v2** |
+| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v2** |
 | Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v1 |
-| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | v1 |
 | OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | v1 |
 | data.world | [peterkolomiets/jobcannon-psychometric-response-dataset](https://data.world/peterkolomiets/jobcannon-psychometric-response-dataset) | v1 |
 
