@@ -117,10 +117,10 @@ you need to pin a snapshot instead, every version carries its own DOI, listed
 on the Zenodo record; the one pinned to v1 is `10.5281/zenodo.20686670`.
 
 Figshare carries its own DataCite DOI, `10.6084/m9.figshare.32668833`, and it
-also resolves to this release. The two remaining DOI handles in the table below —
-OSF and Harvard Dataverse — still point at the **v1** snapshot, 8,394 responses
-rather than 44,342. Citing one of those alongside `version = {2.0}` would name
-this release and hand the reader the previous one, so cite them only for v1.
+also resolves to this release. One handle in the table below — Harvard Dataverse,
+`10.7910/DVN/RL99KS` — still points at the **v1** snapshot, 8,394 responses
+rather than 44,342. Citing it alongside `version = {2.0}` would name this release
+and hand the reader the previous one, so cite it only for v1.
 
 ## Mirrors
 
@@ -131,14 +131,17 @@ this release and hand the reader the previous one, so cite them only for v1.
 | Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v2** |
 | GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v2** |
 | Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v2** |
+| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | **v2** |
 | Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v1 |
-| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | v1 |
-| data.world | [peterkolomiets/jobcannon-psychometric-response-dataset](https://data.world/peterkolomiets/jobcannon-psychometric-response-dataset) | v1 |
 
 Each mirror is re-deposited on its own cycle, so at any moment some of them lag.
 The column above is the only reliable way to tell which snapshot a host is
 serving before downloading from it, and it is kept accurate rather than
 aspirational.
+
+A v1 copy also lived on data.world until that platform retired its Open Data
+Community on 13 July 2026 and deleted the community datasets; that mirror is
+gone, and the seven above are the whole list.
 
 Live aggregate norms, recomputed monthly and larger than this frozen snapshot,
 are published at [jobcannon.io/research/distributions](https://jobcannon.io/research/distributions).
