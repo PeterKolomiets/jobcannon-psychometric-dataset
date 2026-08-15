@@ -135,10 +135,13 @@ version, so a citation written today keeps working after the next release. If
 you need to pin a snapshot instead, every version carries its own DOI, listed on
 the Zenodo record.
 
-Two further DataCite handles resolve to this release: Figshare
-`10.6084/m9.figshare.32668833` and Harvard Dataverse `10.7910/DVN/RL99KS`. All
-three are current — unlike v2, where Harvard sat in a manual metadata-review
-queue and served the previous snapshot for the first five days of the release.
+Figshare mints a second DataCite handle for this release,
+`10.6084/m9.figshare.32668833`, and it is current. The third handle we hold,
+Harvard Dataverse `10.7910/DVN/RL99KS`, still resolves to **v2** — Harvard's
+servers stopped accepting requests from our network partway through this
+release, so the deposit there could not be made. For v3, cite Zenodo or
+Figshare; the Harvard handle is correct only for v2, and it will be updated once
+we can reach them again.
 
 ## Mirrors
 
@@ -150,7 +153,7 @@ queue and served the previous snapshot for the first five days of the release.
 | GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v3** |
 | Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v3** |
 | OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | **v3** |
-| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | **v3** |
+| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v2 |
 
 Each mirror is re-deposited on its own cycle, so at any moment some of them lag.
 The column above is the only reliable way to tell which snapshot a host is
