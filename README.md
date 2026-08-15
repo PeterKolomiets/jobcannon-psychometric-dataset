@@ -1,6 +1,6 @@
 # JobCannon Psychometric Response Dataset
 
-**v2 — 44,342 item-level responses across nine instruments and 23 languages.**
+**v3 — 54,431 item-level responses across nine instruments and 25 languages.**
 
 Anonymized, item-level responses to nine open-domain psychometric instruments,
 collected from real test-takers on [JobCannon](https://jobcannon.io). Each row is
@@ -10,18 +10,28 @@ scores, and the dominant result type.
 This is a **first-party** dataset — our own users' responses, not a
 re-publication of someone else's data.
 
-## What is new in v2
+## What is new in v3
 
-- **5.3× more data.** 8,394 → **44,342** item-level responses.
-- **Multilingual.** **10,535 responses are non-English**, across 22 languages
-  besides English. Open psychometric corpora are almost entirely English; this
-  is the part of the release we think is hardest to find elsewhere.
-- **A by-locale aggregate layer.** Three extra tables give result shares and
-  dimension means per instrument *per language*, so cross-cultural comparisons
-  do not require re-deriving them from the item-level files.
-- **Each instrument is its own config.** In v1 the nine CSVs were served as a
-  single `default` config; because their schemas differ, the dataset viewer
-  could not build and showed zero rows. Fixed here.
+The corpus grew 22.8% in nine weeks. The part that matters grew more than twice
+as fast.
+
+- **Non-English responses are up 52.9%** — 10,535 → **16,112**, against 22.8%
+  for the dataset as a whole. Open psychometric corpora are almost entirely
+  English; this is the part of the release that is hardest to find elsewhere,
+  and it is now 29.6% of every row here.
+- **Two languages appear for the first time:** Uzbek (`uz`) and Persian (`fa`).
+- **Hebrew and Ukrainian cross into the aggregate tables.** Both had item-level
+  rows in v2 but neither reached the n ≥ 100 floor in any instrument, so neither
+  appeared in a single aggregate cell. Both do now.
+- **Publishable aggregate cells: 42 → 57.** Thirteen locale labels now reach
+  n ≥ 100 somewhere, up from eleven.
+- **Total: 44,342 → 54,431** item-level responses, +10,089.
+
+One correction carried over from v2's card: the language table there labelled
+Ukrainian `uk`. The files have always used **`ua`**, and the table below now
+matches them — a reader grepping the CSVs for `uk` found nothing. (Hugging
+Face's language index above still lists the ISO code `uk`, because that is the
+code its index accepts; the value written in the `locale` column is `ua`.)
 
 ## Files
 
@@ -29,27 +39,29 @@ re-publication of someone else's data.
 
 | config | instrument | items | responses |
 | --- | --- | --- | --- |
-| `mbti` | 16-type indicator | 60 | 14,735 |
-| `career_match` | Mini-RIASEC forced choice | 12 | 6,506 |
-| `riasec` | Holland Codes | 60 | 4,947 |
-| `disc` | DISC | 12 | 4,610 |
-| `enneagram` | Enneagram | 36 | 3,784 |
-| `big_five` | Five-Factor | 50 | 3,377 |
-| `multiple_intelligences` | Gardner MI | 40 | 2,936 |
-| `eq` | Emotional intelligence | 10 | 2,512 |
-| `dark_triad` | Dark Triad | 18 | 935 |
-| | | | **44,342** |
+| `mbti` | 16-type indicator | 60 | 17,761 |
+| `career_match` | Mini-RIASEC forced choice | 12 | 8,445 |
+| `riasec` | Holland Codes | 60 | 5,891 |
+| `disc` | DISC | 12 | 5,444 |
+| `enneagram` | Enneagram | 36 | 4,412 |
+| `multiple_intelligences` | Gardner MI | 40 | 4,161 |
+| `big_five` | Five-Factor | 50 | 3,997 |
+| `eq` | Emotional intelligence | 10 | 3,100 |
+| `dark_triad` | Dark Triad | 18 | 1,220 |
+| | | | **54,431** |
 
 Columns: `response_id`, `locale`, `year_month`, `duration_seconds`,
 `top_result`, `score_<dimension>` …, `q1` … `qN`.
+
+Item wording is not distributed. The `q` columns hold answer values only.
 
 ### Aggregates — by instrument × language
 
 | config | rows | what it holds |
 | --- | --- | --- |
-| `coverage` | 198 | n, item count, distinct results and median duration for every instrument × locale cell, with a `publishable` flag (n ≥ 100) |
-| `result_distribution_by_locale` | 330 | share of each result type, per instrument per locale |
-| `dimension_means_by_locale` | 294 | mean of each score dimension, per instrument per locale |
+| `coverage` | 224 | n, item count, distinct results and median duration for every instrument × locale cell, with a `publishable` flag (n ≥ 100) |
+| `result_distribution_by_locale` | 413 | share of each result type, per instrument per locale |
+| `dimension_means_by_locale` | 376 | mean of each score dimension, per instrument per locale |
 
 Aggregates suppress small cells: a locale cell needs **n ≥ 100** to appear, and
 a result category with **n < 30** is folded into `other_below_30`.
@@ -64,15 +76,22 @@ Item-level responses per language, all instruments combined:
 
 | | | | | | |
 | --- | --- | --- | --- | --- | --- |
-| en 29,191 | ja 2,682 | ar 1,533 | ko 1,382 | es 855 | ru 788 |
-| id 660 | fr 608 | pt 414 | uk 314 | th 301 | he 286 |
-| zh 192 | it 144 | de 136 | tr 87 | vi 45 | pl 36 |
-| sv 32 | nl 17 | hi 16 | kk 5 | nb 2 | |
+| en 33,712 | ja 3,359 | ar 2,656 | ko 2,075 | es 1,471 | id 1,225 |
+| fr 944 | ru 870 | pt 739 | th 546 | ua 506 | he 343 |
+| zh 325 | it 255 | de 212 | tr 187 | pl 103 | vi 93 |
+| sv 56 | fa 55 | nl 34 | hi 23 | uz 14 | nb 11 |
+| kk 10 | | | | | |
 
-A further 4,616 responses carry no locale and are labelled `unknown`. Eleven
-locale labels — `ar en es fr id ja ko pt ru th` and `unknown` — reach n ≥ 100
-in at least one instrument and therefore appear in the aggregate tables, in 42
-instrument × locale cells.
+A further 4,607 responses carry no locale and are labelled `unknown`. Thirteen
+locale labels — `ar en es fr he id ja ko pt ru th ua` and `unknown` — reach
+n ≥ 100 in at least one instrument and therefore appear in the aggregate tables,
+in 57 instrument × locale cells.
+
+The `unknown` bucket is nine rows smaller than in v2 while every instrument
+grew. Rows are not deleted from the source table; a response that arrived
+without a locale can acquire one later, which moves it out of `unknown` and into
+a named language. So v3 is a superset of v2 by instrument but not cell-for-cell,
+and the two `unknown` columns are not directly comparable.
 
 ## Privacy
 
@@ -91,7 +110,7 @@ cannot be joined back to a session by its time.
 
 - Rows are filtered to each instrument's **current item count**. A response
   whose answer array is any other length is a legacy test version or an
-  incomplete and is dropped — 2,767 of 47,109 raw rows (5.9%).
+  incomplete and is dropped — 2,804 of 57,235 raw rows (4.9%).
 - `score_*` columns hold the numeric dimensions exactly as scored by the live
   site. Categorical outputs (MBTI's full type with the identity suffix, for
   instance) travel in `top_result`.
@@ -104,7 +123,7 @@ cannot be joined back to a session by its time.
   title  = {JobCannon Psychometric Response Dataset},
   author = {Kolomiets, Peter},
   year   = {2026},
-  version = {2.0},
+  version = {3.0},
   publisher = {JobCannon},
   doi    = {10.5281/zenodo.20686669},
   url    = {https://doi.org/10.5281/zenodo.20686669}
@@ -113,31 +132,30 @@ cannot be joined back to a session by its time.
 
 That handle is Zenodo's **concept** DOI: it always resolves to the newest
 version, so a citation written today keeps working after the next release. If
-you need to pin a snapshot instead, every version carries its own DOI, listed
-on the Zenodo record; the one pinned to v1 is `10.5281/zenodo.20686670`.
+you need to pin a snapshot instead, every version carries its own DOI, listed on
+the Zenodo record.
 
-Figshare carries its own DataCite DOI, `10.6084/m9.figshare.32668833`, and it
-also resolves to this release. One handle in the table below — Harvard Dataverse,
-`10.7910/DVN/RL99KS` — still points at the **v1** snapshot, 8,394 responses
-rather than 44,342. Citing it alongside `version = {2.0}` would name this release
-and hand the reader the previous one, so cite it only for v1.
+Two further DataCite handles resolve to this release: Figshare
+`10.6084/m9.figshare.32668833` and Harvard Dataverse `10.7910/DVN/RL99KS`. All
+three are current — unlike v2, where Harvard sat in a manual metadata-review
+queue and served the previous snapshot for the first five days of the release.
 
 ## Mirrors
 
 | host | handle | serves |
 | --- | --- | --- |
-| Zenodo | [10.5281/zenodo.20686669](https://doi.org/10.5281/zenodo.20686669) | **v2** |
-| Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) | **v2** |
-| Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v2** |
-| GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v2** |
-| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v2** |
-| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | **v2** |
-| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v1 |
+| Zenodo | [10.5281/zenodo.20686669](https://doi.org/10.5281/zenodo.20686669) | **v3** |
+| Hugging Face | [PeterKol/jobcannon-psychometric-responses](https://huggingface.co/datasets/PeterKol/jobcannon-psychometric-responses) | **v3** |
+| Kaggle | [peterkolomiets/jobcannon-psychometric-responses](https://www.kaggle.com/datasets/peterkolomiets/jobcannon-psychometric-responses) | **v3** |
+| GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v3** |
+| Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v3** |
+| OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | **v3** |
+| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | **v3** |
 
 Each mirror is re-deposited on its own cycle, so at any moment some of them lag.
 The column above is the only reliable way to tell which snapshot a host is
 serving before downloading from it, and it is kept accurate rather than
-aspirational.
+aspirational — if a host is still on v2 when you read this, this table says so.
 
 A v1 copy also lived on data.world until that platform retired its Open Data
 Community on 13 July 2026 and deleted the community datasets; that mirror is
