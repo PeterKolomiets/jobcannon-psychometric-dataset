@@ -55,6 +55,29 @@ Columns: `response_id`, `locale`, `year_month`, `duration_seconds`,
 
 Item wording is not distributed. The `q` columns hold answer values only.
 
+### Known issue: MBTI answer order
+
+In `mbti.csv`, the `q1` … `q60` columns of 15,179 of the 17,761 rows (85.5%)
+hold the answers in the order the questions were **displayed**, not in the
+canonical question order. These are rows saved while the question interleave was
+live on the site (shipped 2026-06-19, saving corrected 2026-08-19; the exact
+go-live day is not recorded and the files carry only `year_month`). The files
+carry no flag. A row was classified by testing which order reproduces its own
+`score_*` values: 15,179 rows fit the displayed order only, 2,563 fit the
+canonical order only, 18 fit either and 1 fits neither.
+
+What is not affected: the `score_*` columns were computed at submission from
+the canonical order, and `top_result` equals the type those scores imply in all
+17,761 rows.
+
+What is affected: re-scoring `q1` … `q60` as stored gives a different
+four-letter type than the published `top_result` for 12,314 of the 15,179 rows.
+To recover the canonical order of a row, apply the inverse of the display
+interleave, or take the order that reproduces the row's `score_*` values.
+Hebrew and Ukrainian MBTI rows before 2026-08-01 also answered a mis-cut
+question set. The collection pipeline was fixed on 2026-08-19; this snapshot
+(v3, released 2026-08-15) is unchanged.
+
 ### Aggregates — by instrument × language
 
 | config | rows | what it holds |
