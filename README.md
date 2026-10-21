@@ -137,11 +137,9 @@ the Zenodo record.
 
 Figshare mints a second DataCite handle for this release,
 `10.6084/m9.figshare.32668833`, and it is current. The third handle we hold,
-Harvard Dataverse `10.7910/DVN/RL99KS`, still resolves to **v2** — Harvard's
-servers stopped accepting requests from our network partway through this
-release, so the deposit there could not be made. For v3, cite Zenodo or
-Figshare; the Harvard handle is correct only for v2, and it will be updated once
-we can reach them again.
+Harvard Dataverse `10.7910/DVN/RL99KS`, also serves **v3**: Harvard released it
+on 17 August 2026 after its curation review. All three handles resolve to this
+release.
 
 ## Mirrors
 
@@ -153,7 +151,7 @@ we can reach them again.
 | GitHub | [PeterKolomiets/jobcannon-psychometric-dataset](https://github.com/PeterKolomiets/jobcannon-psychometric-dataset) | **v3** |
 | Figshare | [10.6084/m9.figshare.32668833](https://doi.org/10.6084/m9.figshare.32668833) | **v3** |
 | OSF | [osf.io/dhxp9](https://osf.io/dhxp9/) | **v3** |
-| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | v2 |
+| Harvard Dataverse | [10.7910/DVN/RL99KS](https://doi.org/10.7910/DVN/RL99KS) | **v3** |
 
 Each mirror is re-deposited on its own cycle, so at any moment some of them lag.
 The column above is the only reliable way to tell which snapshot a host is
